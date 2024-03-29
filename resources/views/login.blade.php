@@ -8,14 +8,15 @@
 </head>
 <body>
   <div class="wrapper">
-    <form action="#">
+    <form action="{{route('login')}}" method="POST">
+      @csrf
       <h2>Login</h2>
         <div class="input-field">
-        <input type="text" required>
+        <input type="text" name="email" id="email" required>
         <label>Enter your username</label>
       </div>
       <div class="input-field">
-        <input type="password" required>
+        <input type="password" name="password" id="password" required>
         <label>Enter your password</label>
       </div>
       <div class="forget">

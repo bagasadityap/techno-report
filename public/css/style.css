@@ -188,6 +188,16 @@ nav .profile-details i{
   display: flex;
   align-items: center;
   justify-content: center;
+  width: calc(100% / 3 - 15px);
+  background: #fff;
+  padding: 15px 14px;
+  border-radius: 12px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+.ovb .box{
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: calc(100% / 4 - 15px);
   background: #fff;
   padding: 15px 14px;
@@ -195,12 +205,22 @@ nav .profile-details i{
   box-shadow: 0 5px 10px rgba(0,0,0,0.1);
 }
 .overview-boxes .box-topic{
+  font-size: 25px;
+  font-weight: 500;
+}
+.ovb .box-topic{
   font-size: 20px;
   font-weight: 500;
 }
 .home-content .box .number{
   display: inline-block;
-  font-size: 35px;
+  font-size: 45px;
+  margin-top: -6px;
+  font-weight: 500;
+}
+.ovb .box .number{
+  display: inline-block;
+  font-size: 30px;
   margin-top: -6px;
   font-weight: 500;
 }
@@ -225,27 +245,51 @@ nav .profile-details i{
 .home-content .box .indicator .text{
   font-size: 12px;
 }
-.home-content .box .cart{
-  display: inline-block;
-  font-size: 32px;
-  height: 50px;
-  width: 50px;
+.home-content .box .cart {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 50px;
+  height: 100px;
+  width: 100px;
   background: #cce5ff;
   line-height: 50px;
   text-align: center;
   color: #66b0ff;
   border-radius: 12px;
-  margin: -15px 0 0 6px;
+  margin: -15px 0 0 20px;
 }
-.home-content .box .cart.two{
+.ovb .box .cart {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  height: 75px;
+  width: 75px;
+  background: #cce5ff;
+  line-height: 50px;
+  text-align: center;
+  color: #66b0ff;
+  border-radius: 12px;
+  margin: -15px 0 0 20px;
+}
+.home-content .box .cart.green{
    color: #2BD47D;
    background: #C0F2D8;
  }
-.home-content .box .cart.three{
+.home-content .box .cart.green2{
+   color: #0f5f36;
+   background: #C0F2D8;
+ }
+.home-content .box .cart.green3{
+   color: #082516;
+   background: #C0F2D8;
+ }
+.home-content .box .cart.yellow{
    color: #ffc233;
    background: #ffe8b3;
  }
-.home-content .box .cart.four{
+.home-content .box .cart.red{
    color: #e05260;
    background: #f7d4d7;
  }
