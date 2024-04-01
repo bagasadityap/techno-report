@@ -44,7 +44,7 @@ Administrator
                             <option disabled selected hidden>Choose a role</option>
                             <option value="super_admin">Super Admin</option>
                             <option value="admin_kec">Admin Kecamatan</option>
-                            <option value="admin_kab">Admin Kabuapaten</option>
+                            <option value="admin_kab">Admin Kabupaten</option>
                             <option value="admin_opd">Admin OPD</option>
                           </select>
                           <label for="cars">Posisi:</label>

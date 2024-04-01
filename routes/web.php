@@ -41,6 +41,7 @@ Route::controller(AdminController::class)->prefix('/administrator')->group(funct
     Route::post('/store','store')->name('admin.store');
     Route::get('/detail/{id}','detail')->name('admin.detail');
     Route::get('/update/{id}','update')->name('admin.update');
+    Route::post('/update-store/{id}','update_store')->name('admin.update');
     Route::get('/delete/{id}','delete')->name('admin.delete');
 });
 
