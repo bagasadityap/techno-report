@@ -194,6 +194,16 @@ nav .profile-details i{
   border-radius: 12px;
   box-shadow: 0 5px 10px rgba(0,0,0,0.1);
 }
+.overview-bxs .box{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(100% - 15px);
+  background: #fff;
+  padding: 15px 14px;
+  border-radius: 12px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
 .ovb .box{
   display: flex;
   align-items: center;
