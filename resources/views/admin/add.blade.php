@@ -4,6 +4,10 @@
 Administrator
 @endsection
 
+@section('css')
+  <link rel="stylesheet" href="{{ asset('css/formStyle.css') }}">  
+@endsection
+
 @section('content')
   <section class="home-section">
     <nav>
@@ -18,64 +22,52 @@ Administrator
     </nav>
     
     <div class="home-content">
-      <a href="/administrator/add" class="btn btn-primary text-white" style="margin: 0 0 15px 25px;">Add Admin
-        <i class='bx bx-user-plus text-white' style="margin-left: 3px"></i>
-      </a>
-      <div class="overview-bxs" style="margin-left: 10px">
-        <div class="box">
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>No</th>
-                <th>Username</th>
-                <th>Nama</th>
-                <th>Role</th>
-                <th>Status</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              @foreach($user as $index => $user)
-              <tr>
-                <td>{{ $index + 1 }}</td>
-                <td>{{ $user->email }}</td>
-                <td>{{ $user->name }}</td>
-                <td>
-                  @foreach($user->getRoleNames() as $role)
-                    {{ $role }}
-                  @endforeach
-                </td>
-                <td>
-                  <span class="badge rounded-pill {{ $user->status == 1 ? 'bg-success' : 'bg-danger' }} text-white" style="padding: 2px 10px; font-size: 14px;">
-                    {{ $user->status == 1 ? 'Active' : 'Inactive' }}
-                  </span>
-                </td>
-                <td>
-                  <div class="dropdown">
-                    <a class="btn btn-info dropdown-toggle btn-sm" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Action
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-sm" aria-labelledby="dropdownMenuLink">
-                      <a class="dropdown-item" href="/administrator/detail">
-                        <i class='bx bx-info-circle' style='color: rgb(40, 185, 204);'></i> Detail
-                      </a>
-                      <a class="dropdown-item" href="/administrator/update">
-                        <i class='bx bx-edit' style='color: yellow;'></i> Update
-                      </a>
-                      <a class="dropdown-item" href="/administrator/delete">
-                        <i class='bx bx-trash' style='color: red;'></i> Delete
-                      </a>
-                    </div>
-                  </div>                  
-                </td>
-              </tr>
-              @endforeach
-            </tbody>
-          </table>          
-        </div>
+      <div class="containerr">
+          <div class="content">
+              <form action="{{ url('/administrator/store') }}" method="POST" enctype="multipart/form-data">
+                  @csrf
+                  <div class="topic">Add Admin</div>
+                      <div class="input-box">
+                          <input type="text" name="name" required>
+                          <label>Enter Name</label>
+                      </div>
+                      <div class="input-box">
+                          <input type="text" name="email" required>
+                          <label>Enter username</label>
+                      </div>
+                      <div class="input-box">
+                          <input type="password" name="password" required>
+                          <label>Enter password</label>
+                        </div>
+                        <div class="input-box">
+                          <select name="role" id="cars">
+                            <option disabled selected hidden>Choose a role</option>
+                            <option value="super_admin">Super Admin</option>
+                            <option value="admin_kec">Admin Kecamatan</option>
+                            <option value="admin_kab">Admin Kabuapaten</option>
+                            <option value="admin_opd">Admin OPD</option>
+                          </select>
+                          <label for="cars">Posisi:</label>
+                        </div>
+                        <div class="input-box">
+                          <input type="submit" value="Upload Content">
+                      </div>
+                  </div>
+                </form>
+          </div>
       </div>
     </div>
     <hr style="text-align:left; margin-left:0; border-color: rgba(0, 0, 0, 0.5);">
-
+    
   </section>
+  
 @endsection
+  {{-- <div class="message-box">
+      <textarea rows="1" name="description" class="auto_height" oninput="auto_height(this)" required></textarea>
+      <label>Enter description</label>
+  </div>
+  <div class="input-img">
+      <label>Enter image</label>
+      <br>
+      <input type="file" name="image" required>
+  </div> --}}

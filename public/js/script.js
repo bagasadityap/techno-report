@@ -1,3 +1,8 @@
+import { Modal, Ripple, initMDB } from "mdb-ui-kit";
+
+initMDB({ Modal, Ripple });
+
+
 let sidebar = document.querySelector(".sidebar");
     let sidebarBtn = document.querySelector(".sidebarBtn");
     sidebarBtn.onclick = function() {

@@ -3,11 +3,12 @@
   <head>
     <meta charset="UTF-8">
     <title>Techno Report | @yield('title')</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/subMenu.css">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/subMenu.css') }}">      
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    @yield('css')
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <!-- Bootstrap JS -->
@@ -81,7 +82,7 @@
         </li> --}}
         <li>
           <li class="log_out">
-            <a href="#">
+            <a href="/logout">
               <i class='bx bx-log-out'></i>
               <span class="links_name">Log out</span>
             </a>
@@ -92,6 +93,7 @@
 
   @yield('content')
 
- <script src="js/script.js"></script>
+ <script src="{{asset ('js/script.js')}}"></script>
+ @yield('js')
 </body>
 </html>
