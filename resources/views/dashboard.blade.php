@@ -47,43 +47,31 @@
           </a>
         </li>
         <li>
-          <a href="/administrator" class="{{$page == 'admin' ? ' active' : ''}}">
-            <i class='bx bxs-user-detail' ></i>
-            <span class="links_name">Administrator</span>
-          </a>
-        </li>
-        {{-- <li>
-          <div class="select-menu">
-              <div class="select-btn">
-                <i class='bx bx-cog' ></i>
-                <span class="links_name">Settings</span>
-                <i class="bx bx-chevron-down"></i>
-              </div>
-              <ul class="options">
-                <li>
-                  <a href="#">
-                    <span class="links_name">Settings</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class='bx bx-data' ></i>
-                    <span class="links_name">Data Master</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class='bx bx-data' ></i>
-                    <span class="links_name">Data Master</span>
-                  </a>
-                </li>
-              </ul>
+          <div class="dropdown">
+            <a class="dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class='bx bxs-user-detail'></i>
+              <span class="links_name">Configuration</span>
+            </a>
+            <div class="dropdown-menu" style="background: #081D45; width: 95%" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" href="#">
+                <i class='bx bx-user' ></i>
+                <span class="links_name">Administrator</span>
+              </a>
+              <a class="dropdown-item" href="#">
+                <i class='bx bxs-group' ></i>
+                <span class="links_name">Group User</span>
+              </a>
+              {{-- <a class="dropdown-item" href="#">
+                <i class='bx bx-data' ></i>
+                <span class="links_name">Data Master</span>
+              </a> --}}
+            </div>
           </div>
-        </li> --}}
+        </li>
         <li>
           <li class="log_out">
             <a href="/logout">
-              <i class='bx bx-log-out'></i>
+              <i class='bxs bxs-log-out'></i>
               <span class="links_name">Log out</span>
             </a>
           </li>
