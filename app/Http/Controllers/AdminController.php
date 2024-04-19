@@ -11,18 +11,18 @@ use Spatie\Permission\Models\Role;
 class AdminController extends Controller
 {
     public function index() {
-        $page = 'admin';
+        $page = 'configuration';
         $user = User::all();
         return view("admin.dashboard", ["users"=> $user, "page"=> $page]);
     }
     
     public function add() {
-        $page = 'admin';
+        $page = 'configuration';
         return view("admin.add", ["page"=> $page]);
     }
     
     public function update($id) {
-        $page = 'admin';
+        $page = 'configuration';
         $user = User::where('id', $id)->firstOrFail();
         return view("admin.update", ["page"=> $page], compact("user"));
     }

@@ -1,7 +1,7 @@
 @extends('dashboard')
 
 @section('title')
-Group User
+Administrator
 @endsection
 
 @section('css')
@@ -13,7 +13,7 @@ Group User
     <nav>
       <div class="sidebar-button">
         <i class='bx bx-menu sidebarBtn'></i>
-        <span class="dashboard">Group User</span>
+        <span class="dashboard">Administrator</span>
       </div>
       <div class="profile-details">
         <span class="admin_name">{{ Auth::user()->name }}</span>

@@ -41,37 +41,53 @@
           </a>
         </li>
         <li>
-          <a href="/data-master">
-            <i class='bx bx-data' ></i>
-            <span class="links_name">Data Master</span>
-          </a>
+          <div class="dropdown">
+            <a class="dropdown-toggle {{$page == 'data' ? ' active' : ''}}" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class='bx bx-data'></i>
+              <span class="links_name">Data Master</span>
+            </a>
+            <div class="dropdown-menu" style="background: #081D45; opacity:0.9; width: 95%" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" href="/category">
+                <i class='bx bx-user' ></i>
+                <span class="links_name">Category</span>
+              </a>
+              <a class="dropdown-item" href="/status">
+                <i class='bx bxs-group' ></i>
+                <span class="links_name">Status</span>
+              </a>
+              <a class="dropdown-item" href="/authority">
+                <i class='bx bxs-group' ></i>
+                <span class="links_name">Authority</span>
+              </a>
+              <a class="dropdown-item" href="/region">
+                <i class='bx bxs-group' ></i>
+                <span class="links_name">Region</span>
+              </a>
+            </div>
+          </div>
         </li>
         <li>
           <div class="dropdown">
-            <a class="dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="dropdown-toggle dropdown-bottom {{$page == 'configuration' ? ' active' : ''}}" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class='bx bxs-user-detail'></i>
               <span class="links_name">Configuration</span>
             </a>
-            <div class="dropdown-menu" style="background: #081D45; width: 95%" aria-labelledby="dropdownMenuLink">
-              <a class="dropdown-item" href="#">
+            <div class="dropdown-menu" style="background: #081D45; opacity:0.9; width: 95%" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" href="/administrator">
                 <i class='bx bx-user' ></i>
                 <span class="links_name">Administrator</span>
               </a>
-              <a class="dropdown-item" href="#">
+              <a class="dropdown-item" href="/group-user">
                 <i class='bx bxs-group' ></i>
                 <span class="links_name">Group User</span>
               </a>
-              {{-- <a class="dropdown-item" href="#">
-                <i class='bx bx-data' ></i>
-                <span class="links_name">Data Master</span>
-              </a> --}}
             </div>
           </div>
         </li>
         <li>
           <li class="log_out">
             <a href="/logout">
-              <i class='bxs bxs-log-out'></i>
+              <i class='bx bx-log-out'></i>
               <span class="links_name">Log out</span>
             </a>
           </li>
