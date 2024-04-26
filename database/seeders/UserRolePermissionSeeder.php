@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Status;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -72,6 +73,14 @@ class UserRolePermissionSeeder extends Seeder
             $admin_kec->assignRole($roleAdminKec);
             $admin_kab->assignRole($roleAdminKab);
             $admin_opd->assignRole($roleAdminOPD);
+
+            Status::create([
+                'name'=> 'Belum Ditanggapi',
+                'created_at'=> now(),
+                'color' => 'red',
+                'class' => 'danger',
+                'icon' => 'bxs-calendar-x'
+            ]);
 
             DB::commit();
             

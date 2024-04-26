@@ -15,10 +15,14 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('name');
-            $table->string('reporter');
             $table->text('detail');
             $table->date('date');
             $table->string('photo');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')
+                ->references('id')->on('users')
+                ->onUpdate('CASCADE');
+            
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')
                 ->references('id')->on('categories')

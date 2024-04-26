@@ -18,7 +18,7 @@ Group User
     </nav>
 
     <div class="home-content">
-        <a href="/administrator/add" class="btn btn-primary text-white" style="margin: 0 0 15px 25px;">Add Admin
+        <a href="/administrator/add" class="btn btn-primary text-white" style="margin: 0 0 15px 25px;">Add Group
             <i class='bx bx-user-plus text-white' style="margin-left: 3px"></i>
         </a>
         <div class="overview-bxs" style="margin-left: 10px">

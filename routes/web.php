@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MainController;
@@ -51,6 +52,16 @@ Route::controller(AdminController::class)->prefix('/administrator')->group(funct
     Route::get('/delete/{id}','delete')->name('admin.delete');
 });
 
+Route::controller(ReportController::class)->prefix('/report')->group(function () {
+    Route::get('/','index')->name('report');
+    Route::get('/add','add')->name('report.add');
+    Route::post('/store','store')->name('report.store');
+    Route::get('/detail/{id}','detail')->name('report.detail');
+    Route::get('/update/{id}','update')->name('report.update');
+    Route::post('/update-store/{id}','update_store')->name('report.update');
+    Route::get('/delete/{id}','delete')->name('report.delete');
+});
+
 Route::controller(GroupUserController::class)->prefix('/group-user')->group(function () {
     Route::get('/','index')->name('group-user');
     Route::get('/add','add')->name('group-user.add');
@@ -65,8 +76,11 @@ Route::controller(DataMasterController::class)->group(function () {
     Route::get('/category','category')->name('category');
     Route::post('/category/add','add_category')->name('category.add');
     Route::get('/status','status')->name('status');
+    Route::post('/status/add','add_status')->name('status.add');
     Route::get('/authority','authority')->name('authority');
+    Route::post('/authority/add','add_authority')->name('authority.add');
     Route::get('/region','region')->name('region');
+    Route::post('/region/add','add_region')->name('region.add');
 });
 
 Auth::routes();

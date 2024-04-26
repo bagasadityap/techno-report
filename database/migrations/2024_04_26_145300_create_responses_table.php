@@ -11,13 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('statuses', function (Blueprint $table) {
+        Schema::create('responses', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('color');
-            $table->string('class');
-            $table->string('icon');
             $table->timestamps();
+            $table->text('description');
+            $table->string('image');
+            $table->date('date');
+            $table->unsignedBigInteger('report_id');
+            $table->foreign('report_id')
+                ->references('id')->on('reports')
+                ->onUpdate('CASCADE');
         });
     }
 
@@ -26,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('statuses');
+        Schema::dropIfExists('responses');
     }
 };

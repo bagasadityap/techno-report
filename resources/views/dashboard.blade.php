@@ -8,6 +8,8 @@
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.8/dist/trix.css">
+    <script type="text/javascript" src="https://unpkg.com/trix@2.0.8/dist/trix.umd.min.js"></script>
     @yield('css')
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -29,7 +31,7 @@
           </a>
         </li>
         <li>
-          <a href="/pelaporan" class="{{$page == 'report' ? ' active' : ''}}">
+          <a href="/report" class="{{$page == 'report' ? ' active' : ''}}">
             <i class='bx bxs-comment-error' ></i>
             <span class="links_name">Pelaporan</span>
           </a>
@@ -48,19 +50,19 @@
             </a>
             <div class="dropdown-menu" style="background: #081D45; opacity:0.9; width: 95%" aria-labelledby="dropdownMenuLink">
               <a class="dropdown-item" href="/category">
-                <i class='bx bx-user' ></i>
+                <i class='bx bx-folder' ></i>
                 <span class="links_name">Category</span>
               </a>
               <a class="dropdown-item" href="/status">
-                <i class='bx bxs-group' ></i>
+                <i class='bx bxs-info-circle' ></i>
                 <span class="links_name">Status</span>
               </a>
               <a class="dropdown-item" href="/authority">
-                <i class='bx bxs-group' ></i>
+                <i class='bx bx-pen' ></i>
                 <span class="links_name">Authority</span>
               </a>
               <a class="dropdown-item" href="/region">
-                <i class='bx bxs-group' ></i>
+                <i class='bx bx-globe' ></i>
                 <span class="links_name">Region</span>
               </a>
             </div>

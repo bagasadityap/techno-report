@@ -26,7 +26,7 @@ Administrator
           <div class="content">
               <form action="{{ url('/administrator/store') }}" method="POST" enctype="multipart/form-data">
                   @csrf
-                  <div class="topic">Add Admin</div>
+                  <div class="topic">Add Group</div>
                       <div class="input-box">
                           <input type="text" name="name" required>
                           <label>Enter Name</label>
