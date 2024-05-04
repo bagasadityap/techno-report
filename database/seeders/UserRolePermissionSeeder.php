@@ -59,28 +59,65 @@ class UserRolePermissionSeeder extends Seeder
             $roleAdminKab = Role::create(['name' => 'admin_kab']);
             $roleAdminOPD = Role::create(['name' => 'admin_opd']);
 
-            $permission = Permission::create(['name' => 'read_role']);
-            $permission = Permission::create(['name' => 'create_role']);
-            $permission = Permission::create(['name' => 'update_role']);
-            $permission = Permission::create(['name' => 'delete_role']);
+            $menus = ['Dashboard', 'Rekap Laporan', 'Data master', 'Configuration'];
 
-            $roleSuperAdmin->givePermissionTo('read_role');
-            $roleSuperAdmin->givePermissionTo('create_role');
-            $roleSuperAdmin->givePermissionTo('update_role');
-            $roleSuperAdmin->givePermissionTo('delete_role');
+            foreach ($menus as $menu) {
+                Permission::create(['name' => $menu]);
+                $roleSuperAdmin->givePermissionTo($menu);
+            }
+            
+            $menus2 = ['Pelaporan', 'Tanggapan', 'Kategori', 'Status', 'Kewenangan', 'Region', 'User', 'Group User'];
+            
+            foreach ($menus2 as $m) {
+                Permission::create(['name' => $m . 'crud']);
+                Permission::create(['name' => $m . ' Read']);
+                Permission::create(['name' => $m . ' Create']);
+                Permission::create(['name' => $m . ' Update']);
+                Permission::create(['name' => $m . ' Delete']);
+                
+                $roleSuperAdmin->givePermissionTo($m . 'crud');
+                $roleSuperAdmin->givePermissionTo($m . ' Read');
+                $roleSuperAdmin->givePermissionTo($m . ' Create');
+                $roleSuperAdmin->givePermissionTo($m . ' Update');
+                $roleSuperAdmin->givePermissionTo($m . ' Delete');
+            }
+            
 
             $super_admin->assignRole($roleSuperAdmin);
             $admin_kec->assignRole($roleAdminKec);
             $admin_kab->assignRole($roleAdminKab);
             $admin_opd->assignRole($roleAdminOPD);
 
-            Status::create([
-                'name'=> 'Belum Ditanggapi',
-                'created_at'=> now(),
-                'color' => 'red',
-                'class' => 'danger',
-                'icon' => 'bxs-calendar-x'
-            ]);
+            Status::insert([
+                [
+                    'name' => 'Belum Ditanggapi',
+                    'created_at' => now(),
+                    'color' => 'red',
+                    'class' => 'danger',
+                    'icon' => 'bxs-calendar-x'
+                ],
+                [
+                    'name' => 'Dalam Penanganan',
+                    'created_at' => now(),
+                    'color' => 'yellow',
+                    'class' => 'warning',
+                    'icon' => 'bx-hourglass',
+                ],
+                [
+                    'name' => 'Dalam Perencanaan',
+                    'created_at' => now(),
+                    'color' => 'blue',
+                    'class' => 'info',
+                    'icon' => 'bxs-hourglass-bottom',
+                ],
+                [
+                    'name' => 'Telah Diselesaikan',
+                    'created_at' => now(),
+                    'color' => 'green',
+                    'class' => 'success',
+                    'icon' => 'bxs-calendar-check',
+                ]
+            ]);            
 
             DB::commit();
             

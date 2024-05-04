@@ -18,9 +18,27 @@ Administrator
     </nav>
 
     <div class="home-content">
+        @if (session('success'))
+            <div class="alert alert-success alert-dismissible fade show">
+                {{ session('success') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+        @if (session('error'))
+            <div class="alert alert-danger alert-dismissible fade show">
+                {{ session('error') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+        @can('User Create')
         <a href="/administrator/add" class="btn btn-primary text-white" style="margin: 0 0 15px 25px;">Add Admin
             <i class='bx bx-user-plus text-white' style="margin-left: 3px"></i>
         </a>
+        @endcan
         <div class="overview-bxs" style="margin-left: 10px">
             <div class="box">
                 <table class="table table-striped">
@@ -56,15 +74,21 @@ Administrator
                                         Action
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-sm" aria-labelledby="dropdownMenuLink">
+                                        @can('User Read')
                                         <button type="button" class="btn btn-danger dropdown-item" data-toggle="modal" data-target="#adminDetail_{{ $user->id }}">
-                                          <i class='bx bx-info-circle' style='color: rgb(40, 185, 204);'></i> Detail
+                                            <i class='bx bx-info-circle' style='color: rgb(40, 185, 204);'></i> Detail
                                         </button>
+                                        @endcan
+                                        @can('User Update')
                                         <a class="dropdown-item" href="/administrator/update/{{ $user->id }}">
                                             <i class='bx bx-edit' style='color: yellow;'></i> Update
                                         </a>
+                                        @endcan
+                                        @can('User Delete')
                                         <button type="button" class="btn btn-danger dropdown-item" data-toggle="modal" data-target="#deleteConfirmation_{{ $user->id }}">
-                                          <i class='bx bx-trash' style='color: red;'></i> Delete
+                                            <i class='bx bx-trash' style='color: red;'></i> Delete
                                         </button>
+                                        @endcan
                                       </div>
                                       <!-- Modal -->
                                       <div class="modal fade" id="adminDetail_{{ $user->id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

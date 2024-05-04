@@ -6,21 +6,39 @@ Category
 
 @section('content')
 <section class="home-section">
-    <nav>
+  <nav>
         <div class="sidebar-button">
-            <i class='bx bx-menu sidebarBtn'></i>
-            <span class="dashboard">Category</span>
+          <i class='bx bx-menu sidebarBtn'></i>
+          <span class="dashboard">Category</span>
         </div>
         <div class="profile-details">
-            <span class="admin_name">{{ Auth::user()->name }}</span>
-            <i class='bx bx-chevron-down'></i>
+          <span class="admin_name">{{ Auth::user()->name }}</span>
+          <i class='bx bx-chevron-down'></i>
         </div>
-    </nav>
+      </nav>
 
-    <div class="home-content">
+      <div class="home-content">
+        @if (session('success'))
+            <div class="alert alert-success alert-dismissible fade show">
+                {{ session('success') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+        @if (session('error'))
+            <div class="alert alert-danger alert-dismissible fade show">
+                {{ session('error') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+        @can('Kategori Create')
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addData" style="margin: 0 0 15px 25px;">
             <i class='bx bx-plus text-white' style='margin-left: 3px'></i> Add Category
         </button>
+        @endcan
         <!-- Modal -->
         <div class="modal fade" id="addData" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -30,27 +48,27 @@ Category
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
-                    <form action="/category/add" method="POST">
-                        @csrf
-                        <label for="name">Nama Kategori : </label>
-                        <input type="text" name="name" id="name"><br><br>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
-              </div>                             
+                  <form action="/category/add" method="POST">
+                    @csrf
+                    <label for="name">Nama Kategori : </label>
+                    <input type="text" name="name" id="name"><br><br>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+                </div>                             
               </div>
             </div>
           </div>
           <!-- End Modal -->
-        <div class="overview-bxs" style="margin-left: 10px">
+          <div class="overview-bxs" style="margin-left: 10px">
             <div class="box">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Kategori</th>
-                            <th>Created At</th>
-                            <th></th>
-                        </tr>
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>Kategori</th>
+                    <th>Created At</th>
+                    <th></th>
+                  </tr>
                     </thead>
                     <tbody>
                         @foreach($category as $index => $c)
@@ -64,12 +82,16 @@ Category
                                         Action
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-sm" aria-labelledby="dropdownMenuLink">
+                                        @can('Kategori Update')
                                         <button type="button" class="btn btn-warning dropdown-item" data-toggle="modal" data-target="#updateData_{{ $c->id }}">
                                           <i class='bx bx-trash' style='color: yellow;'></i> Update
                                         </button>
+                                        @endcan
+                                        @can('Kategori Delete')
                                         <button type="button" class="btn btn-danger dropdown-item" data-toggle="modal" data-target="#deleteConfirmation_{{ $c->id }}">
                                           <i class='bx bx-trash' style='color: red;'></i> Delete
                                         </button>
+                                        @endcan
                                     </div>
                                     <!-- Modal -->
                                   <div class="modal fade" id="updateData_{{ $c->id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

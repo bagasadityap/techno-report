@@ -29,8 +29,6 @@ class MainController extends Controller
             ->select(DB::raw('count(*) as c, status_id'))
             ->groupBy('status_id')
             ->get();
-
-        // dd($status);
     
         return view("main.dashboard", ['page' => $page, 'today' => $today, 'thisWeekSum' => $thisWeekSum, 'thisMonth' => $thisMonth, 'thisWeek' => $thisWeek, 'statuses'=>$statuses, 'status' => $status]);
     }

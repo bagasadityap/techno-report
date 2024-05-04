@@ -67,12 +67,12 @@ class ReportController extends Controller
             $report->status_id = $status_id;
             $report->save();
 
-            return redirect('/report')->with('success', 'Report created successfully!');
+            return redirect('/report')->with('success', 'Laporan berhasil ditambahkan!');
         } catch (ValidationException $e) {
             return redirect()->back()->withErrors($e->errors())->withInput();
         } catch (\Exception $e) {
             \Log::error('Error creating report: ' . $e->getMessage());
-            return redirect()->back()->with('error', 'An error occurred while processing your request.');
+            return redirect()->back()->with('error', 'Kesalahan saat menambahkan laporan.');
         }
     }
 
@@ -110,12 +110,12 @@ class ReportController extends Controller
             $report->status_id = $status_id;
             $report->save();
 
-            return redirect('/report')->with('success', 'Report updated successfully!');
+            return redirect('/report')->with('success', 'Laporan berhasil diperbarui!');
         } catch (ValidationException $e) {
             return redirect()->back()->withErrors($e->errors())->withInput();
         } catch (\Exception $e) {
             \Log::error('Error updating report: ' . $e->getMessage());
-            return redirect()->back()->with('error', 'An error occurred while processing your request.');
+            return redirect()->back()->with('error', 'Kesalahan saat memperbarui laporan.');
         }
     }
 

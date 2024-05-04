@@ -18,9 +18,27 @@ Authority
     </nav>
 
     <div class="home-content">
+      @if (session('success'))
+          <div class="alert alert-success alert-dismissible fade show">
+              {{ session('success') }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+      @endif
+      @if (session('error'))
+          <div class="alert alert-danger alert-dismissible fade show">
+              {{ session('error') }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+      @endif   
+        @can('Kewenangan Create')
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addData" style="margin: 0 0 15px 25px;">
             <i class='bx bx-plus text-white' style='margin-left: 3px'></i> Add Authority
         </button>
+        @endcan
         <!-- Modal -->
         <div class="modal fade" id="addData" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -41,8 +59,8 @@ Authority
             </div>
           </div>
           <!-- End Modal -->
-        <div class="overview-bxs" style="margin-left: 10px">
-            <div class="box">
+        <div class="overview-bxs" style="margin-left: 10px"> 
+          <div class="box">
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -64,12 +82,16 @@ Authority
                                         Action
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-sm" aria-labelledby="dropdownMenuLink">
+                                        @can('Kewenangan Update')
                                         <button type="button" class="btn btn-warning dropdown-item" data-toggle="modal" data-target="#updateData_{{ $a->id }}">
                                           <i class='bx bx-trash' style='color: yellow;'></i> Update
                                         </button>
+                                        @endcan
+                                        @can('Kewenangan Delete')
                                         <button type="button" class="btn btn-danger dropdown-item" data-toggle="modal" data-target="#deleteConfirmation_{{ $a->id }}">
                                           <i class='bx bx-trash' style='color: red;'></i> Delete
                                         </button>
+                                        @endcan
                                     </div>
                                     <!-- Modal -->
                                   <div class="modal fade" id="updateData_{{ $a->id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -80,9 +102,9 @@ Authority
                                           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="/category/update/{{ $a->id }}" method="POST">
+                                            <form action="/authority/update/{{ $a->id }}" method="POST">
                                                 @csrf
-                                                <label for="name">Nama Kategori : </label>
+                                                <label for="name">Nama Kewenangan : </label>
                                                 <input type="text" name="name" id="name" value="{{ $a->name }}"><br><br>
                                                 <button type="submit" class="btn btn-primary">Submit</button>
                                             </form>
@@ -105,7 +127,7 @@ Authority
                                           </div>
                                           <div class="modal-footer">
                                             <button type="button" class="btn btn-default" id="deleteNo" data-dismiss="modal">No</button>
-                                            <a href="/category/delete/{{ $a->id }}" class="btn btn-primary" id="deleteOk">Yes</a>
+                                            <a href="/authority/delete/{{ $a->id }}" class="btn btn-primary" id="deleteOk">Yes</a>
                                           </div>
                                         </div>
                                       </div>

@@ -24,24 +24,31 @@
       <span class="logo_name">Report App</span>
     </div class="content">
       <ul class="nav-links menu-items">
+        @can('Dashboard')
         <li>
           <a href="/dashboard" class="{{$page == 'main' ? ' active' : ''}}">
             <i class='bx bx-grid-alt' ></i>
             <span class="links_name">Dashboard</span>
           </a>
         </li>
+        @endcan
+        @can('Pelaporancrud')
         <li>
           <a href="/report" class="{{$page == 'report' ? ' active' : ''}}">
             <i class='bx bxs-comment-error' ></i>
             <span class="links_name">Pelaporan</span>
           </a>
         </li>
+        @endcan
+        @can('Rekap Laporan')
         <li>
-          <a href="/rekap-laporan">
+          <a href="/rekap-laporan" class="{{$page == 'recap' ? ' active' : ''}}">
             <i class='bx bx-book-content' ></i>
             <span class="links_name">Rekap Laporan</span>
           </a>
         </li>
+        @endcan
+        @can('Data master')
         <li>
           <div class="dropdown">
             <a class="dropdown-toggle {{$page == 'data' ? ' active' : ''}}" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -49,25 +56,35 @@
               <span class="links_name">Data Master</span>
             </a>
             <div class="dropdown-menu" style="background: #081D45; opacity:0.9; width: 95%" aria-labelledby="dropdownMenuLink">
+              @can('Kategoricrud')
               <a class="dropdown-item" href="/category">
                 <i class='bx bx-folder' ></i>
                 <span class="links_name">Category</span>
               </a>
+              @endcan
+              @can('Statuscrud')
               <a class="dropdown-item" href="/status">
                 <i class='bx bxs-info-circle' ></i>
                 <span class="links_name">Status</span>
               </a>
+              @endcan
+              @can('Kewenangancrud')
               <a class="dropdown-item" href="/authority">
                 <i class='bx bx-pen' ></i>
                 <span class="links_name">Authority</span>
               </a>
-              <a class="dropdown-item" href="/region">
-                <i class='bx bx-globe' ></i>
-                <span class="links_name">Region</span>
-              </a>
+              @endcan
+              @can('Regioncrud')
+                <a class="dropdown-item" href="/region">
+                  <i class='bx bx-globe' ></i>
+                  <span class="links_name">Region</span>
+                </a>
+              @endcan
             </div>
           </div>
         </li>
+        @endcan
+        @can('Configuration')
         <li>
           <div class="dropdown">
             <a class="dropdown-toggle dropdown-bottom {{$page == 'configuration' ? ' active' : ''}}" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -75,17 +92,22 @@
               <span class="links_name">Configuration</span>
             </a>
             <div class="dropdown-menu" style="background: #081D45; opacity:0.9; width: 95%" aria-labelledby="dropdownMenuLink">
+              @can('Usercrud')
               <a class="dropdown-item" href="/administrator">
                 <i class='bx bx-user' ></i>
                 <span class="links_name">Administrator</span>
               </a>
+              @endcan
+              @can('Group Usercrud')
               <a class="dropdown-item" href="/group-user">
                 <i class='bx bxs-group' ></i>
                 <span class="links_name">Group User</span>
               </a>
+              @endcan
             </div>
           </div>
         </li>
+        @endcan
         <li>
           <li class="log_out">
             <a href="/logout">

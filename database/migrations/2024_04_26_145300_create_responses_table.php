@@ -19,7 +19,11 @@ return new class extends Migration
             $table->date('date');
             $table->unsignedBigInteger('report_id');
             $table->foreign('report_id')
-                ->references('id')->on('reports')
+            ->references('id')->on('reports')
+            ->onUpdate('CASCADE');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')
+                ->references('id')->on('users')
                 ->onUpdate('CASCADE');
         });
     }

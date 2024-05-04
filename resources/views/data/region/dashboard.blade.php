@@ -14,13 +14,31 @@ Region
         <div class="profile-details">
             <span class="admin_name">{{ Auth::user()->name }}</span>
             <i class='bx bx-chevron-down'></i>
-        </div>
-    </nav>
-
-    <div class="home-content">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addData" style="margin: 0 0 15px 25px;">
+          </div>
+        </nav>
+        
+        <div class="home-content">
+          @if (session('success'))
+              <div class="alert alert-success alert-dismissible fade show">
+                  {{ session('success') }}
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+          @endif
+          @if (session('error'))
+              <div class="alert alert-danger alert-dismissible fade show">
+                  {{ session('error') }}
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+          @endif  
+          @can('Region Create')
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addData" style="margin: 0 0 15px 25px;">
             <i class='bx bx-plus text-white' style='margin-left: 3px'></i> Add Region
-        </button>
+          </button>
+          @endcan
         <!-- Modal -->
         <div class="modal fade" id="addData" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -42,7 +60,7 @@ Region
           </div>
           <!-- End Modal -->
         <div class="overview-bxs" style="margin-left: 10px">
-            <div class="box">
+          <div class="box">
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -64,12 +82,16 @@ Region
                                         Action
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-sm" aria-labelledby="dropdownMenuLink">
+                                        @can('Region Update')
                                         <button type="button" class="btn btn-warning dropdown-item" data-toggle="modal" data-target="#updateData_{{ $r->id }}">
                                           <i class='bx bx-trash' style='color: yellow;'></i> Update
                                         </button>
+                                        @endcan
+                                        @can('Region Delete')
                                         <button type="button" class="btn btn-danger dropdown-item" data-toggle="modal" data-target="#deleteConfirmation_{{ $r->id }}">
                                           <i class='bx bx-trash' style='color: red;'></i> Delete
                                         </button>
+                                        @endcan
                                     </div>
                                     <!-- Modal -->
                                   <div class="modal fade" id="updateData_{{ $r->id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

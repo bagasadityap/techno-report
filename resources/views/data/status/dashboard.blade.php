@@ -12,27 +12,33 @@ Status
             <span class="dashboard">Status</span>
         </div>
         <div class="profile-details">
-            <span class="admin_name">{{ Auth::user()->name }}</span>
-            <i class='bx bx-chevron-down'></i>
+          <span class="admin_name">{{ Auth::user()->name }}</span>
+          <i class='bx bx-chevron-down'></i>
         </div>
-    </nav>
+      </nav>
 
-    <div class="home-content">
-      @if (Session::has('success'))
-    <div class="alert alert-success">
-        {{ Session::get('success') }}
-    </div>
-@endif
-
-@if (Session::has('error'))
-    <div class="alert alert-danger">
-        {{ Session::get('error') }}
-    </div>
-@endif
-
+      <div class="home-content">
+        @if (session('success'))
+            <div class="alert alert-success alert-dismissible fade show">
+                {{ session('success') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+        @if (session('error'))
+            <div class="alert alert-danger alert-dismissible fade show">
+                {{ session('error') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif  
+        @can('Status Create')
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addData" style="margin: 0 0 15px 25px;">
-            <i class='bx bx-plus text-white' style='margin-left: 3px'></i> Add Status
+          <i class='bx bx-plus text-white' style='margin-left: 3px'></i> Add Status
         </button>
+        @endcan
         <!-- Modal -->
         <div class="modal fade" id="addData" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -60,13 +66,15 @@ Status
           </div>
           <!-- End Modal -->
         <div class="overview-bxs" style="margin-left: 10px">
-            <div class="box">
+          <div class="box">
                 <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>No</th>
                             <th>Status</th>
                             <th>Created At</th>
+                            <th>Badge</th>
+                            <th>Icon</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -77,17 +85,29 @@ Status
                             <td>{{ $s->name }}</td>
                             <td>{{ $s->created_at }}</td>
                             <td>
+                              <span class="badge rounded-pill bg-{{ $s->class}} text-white" style="padding: 2px 10px; font-size: 14px;">
+                                  {{ $s->name }}
+                              </span>
+                            </td>
+                            <td>
+                              <i class='bx {{ $s->icon }}' style='margin-left: 3px'></i>
+                            </td>
+                            <td>
                                 <div class="dropdown">
                                     <a class="btn btn-info dropdown-toggle btn-sm" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Action
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-sm" aria-labelledby="dropdownMenuLink">
+                                        @can('Status Update')
                                         <button type="button" class="btn btn-warning dropdown-item" data-toggle="modal" data-target="#updateData_{{ $s->id }}">
                                           <i class='bx bx-trash' style='color: yellow;'></i> Update
                                         </button>
+                                        @endcan
+                                        @can('Status Update')
                                         <button type="button" class="btn btn-danger dropdown-item" data-toggle="modal" data-target="#deleteConfirmation_{{ $s->id }}">
                                           <i class='bx bx-trash' style='color: red;'></i> Delete
                                         </button>
+                                        @endcan
                                     </div>
                                     <!-- Modal -->
                                   <div class="modal fade" id="updateData_{{ $s->id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

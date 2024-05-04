@@ -10,7 +10,4 @@ class RoleController extends Controller
         $this->middleware("can:create role")->only("create");
     }
     
-    public function index() {
-        return 'role page';
-    }
 }

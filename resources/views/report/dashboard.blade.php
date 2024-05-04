@@ -18,9 +18,27 @@ Pelaporan
     </nav>
 
     <div class="home-content">
+      @if (session('success'))
+          <div class="alert alert-success alert-dismissible fade show">
+              {{ session('success') }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+      @endif
+      @if (session('error'))
+          <div class="alert alert-danger alert-dismissible fade show">
+              {{ session('error') }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+      @endif 
+      @can('Pelaporan Create')
         <a href="/report/add" class="btn btn-primary text-white" style="margin: 0 0 15px 25px;">Add Laporan
             <i class='bx bx-user-plus text-white' style="margin-left: 3px"></i>
         </a>
+        @endcan
         <div class="overview-bxs" style="margin-left: 10px">
             <div class="box">
                 <table class="table table-striped">
@@ -49,9 +67,6 @@ Pelaporan
                                 <span class="badge rounded-pill bg-{{ $report->status->class}} text-white" style="padding: 2px 10px; font-size: 14px;">
                                     {{ $report->status->name }}
                                 </span>
-                                {{-- <span class="badge rounded-pill {{ $report->status == 1 ? 'bg-success' : 'bg-danger' }} text-white" style="padding: 2px 10px; font-size: 14px;">
-                                    {{ $report->status == 1 ? 'Active' : 'Inactive' }}
-                                </span> --}}
                             </td>
                             <td>
                                 <div class="dropdown">
@@ -59,18 +74,26 @@ Pelaporan
                                         Action
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-sm" aria-labelledby="dropdownMenuLink">
-                                        <a class="dropdown-item" href="/report/{{ $report->id }}/response">
+                                        @can('Tanggapancrud')
+                                        <a class="dropdown-item" href="/report/response/{{ $report->id }}">
                                           <i class='bx bx-comment-dots' style='color: green;'></i> Tanggapi
                                         </a>
+                                        @endcan
+                                        @can('Pelaporan Read')
                                         <button type="button" class="btn btn-danger dropdown-item" data-toggle="modal" data-target="#adminDetail_{{ $report->id }}">
                                           <i class='bx bx-info-circle' style='color: rgb(40, 185, 204);'></i> Detail
                                         </button>
+                                        @endcan
+                                        @can('Pelaporan Update')
                                         <a class="dropdown-item" href="/report/update/{{ $report->id }}">
                                             <i class='bx bx-edit' style='color: yellow;'></i> Update
                                         </a>
+                                        @endcan
+                                        @can('Pelaporan Delete')
                                         <button type="button" class="btn btn-danger dropdown-item" data-toggle="modal" data-target="#deleteConfirmation_{{ $report->id }}">
                                           <i class='bx bx-trash' style='color: red;'></i> Delete
                                         </button>
+                                        @endcan
                                       </div>
                                       <!-- Modal -->
                                       <div class="modal fade" id="adminDetail_{{ $report->id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
